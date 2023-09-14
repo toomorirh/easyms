@@ -23,6 +23,7 @@ import com.rhcsa.easyms.repository.TutorialRepository;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api")
 @Tag(name = "Sample", description = "Sample Rest API")
