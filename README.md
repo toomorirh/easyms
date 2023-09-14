@@ -1,8 +1,6 @@
 # easyms
 Easy Rest Microservice
 
-# podman-ws-csa
-
 <a name="readme-top"></a>
 
 <!-- TABLE OF CONTENTS -->
