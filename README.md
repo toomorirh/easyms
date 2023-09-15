@@ -68,6 +68,11 @@ APIの実態は/apiの配下に配置されています。各種仕様は上記W
 
 [http://localhost:8080/api](http://localhost:8080/api)
 
+APIの簡単な説明
+
+* Tutorial: Restの基本的なCRUDAPI
+* Code: HttpStatusCodeのステートを設定し、擬似的な異常レスポンスを作れます
+
 ### Database Manage
 H2DBの管理は以下のURLから実行できます(接続情報の設定はapplication.properties)
 

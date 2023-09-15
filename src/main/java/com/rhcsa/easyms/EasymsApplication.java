@@ -11,9 +11,9 @@ import io.swagger.v3.oas.annotations.info.Info;
 @SpringBootApplication
 @EntityScan("com.rhcsa.easyms.model")
 @EnableJpaRepositories("com.rhcsa.easyms.repository") 
-@OpenAPIDefinition(info = @Info(title = "Demo-Rest-App", 
-        description = "Spring Boot v3 and spring-doc open api v2 sample Apps", 
-        version = "v2.0.0")) 
+@OpenAPIDefinition(info = @Info(title = "Easy-MicroDervice-App", 
+        description = "Spring Boot v3 based RestAPI with OAS3 Apps", 
+        version = "v1.0.0")) 
 public class EasymsApplication {
 
 	public static void main(String[] args) {

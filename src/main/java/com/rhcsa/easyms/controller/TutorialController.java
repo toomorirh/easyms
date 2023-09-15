@@ -26,7 +26,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @CrossOrigin
 @RestController
 @RequestMapping("/api")
-@Tag(name = "Sample", description = "Sample Rest API")
+@Tag(name = "Simple", description = "Simple Rest API")
 public class TutorialController {
 
 	@Autowired
