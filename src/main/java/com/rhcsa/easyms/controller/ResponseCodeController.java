@@ -31,7 +31,7 @@ public class ResponseCodeController {
 	@Autowired
 	HtstatusRepository htstatusRepository;
 
-	@GetMapping("/code/sßtatus")
+	@GetMapping("/code/status")
 	public ResponseEntity<String> getHtstatus() {
 		try {
 			List<HtStatus> htstatus = new ArrayList<HtStatus>();
