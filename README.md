@@ -78,13 +78,12 @@ H2DBの管理は以下のURLから実行できます(接続情報の設定はapp
 
 ### Other Tips
 
-Dockerfileを使ってコンテナ実行する場合
-以下のコマンドを参考にしてください
+Dockerfileを使ってコンテナ実行する場合は以下のコマンドを参考にしてください。
 (要Podman。Dockerの場合dockerに置き換えてください)
 
 ```
 podman build -t sample . 
 podman run -d --name sample -p 8080:8080 localhost/sample
 ```
-
+注意：コンテナで実行する場合、buildしたjarから動作させています
 注意：コンテナで実行する場合、`/h2-ui` を通したDB管理はできません。

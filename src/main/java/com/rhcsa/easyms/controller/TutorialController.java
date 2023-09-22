@@ -21,17 +21,19 @@ import org.springframework.web.bind.annotation.RestController;
 import com.rhcsa.easyms.model.Tutorial;
 import com.rhcsa.easyms.repository.TutorialRepository;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @CrossOrigin
 @RestController
 @RequestMapping("/api")
-@Tag(name = "Simple", description = "Simple Rest API")
+@Tag(name = "Simple CRUD API", description = "RestAPIに寄せた単純なCRUD処理を実施できます")
 public class TutorialController {
 
 	@Autowired
 	TutorialRepository tutorialRepository;
 
+    @Operation(summary = "複数取得", description = "対象のデータを複数権取得します")
 	@GetMapping("/tutorials")
 	public ResponseEntity<List<Tutorial>> getAllTutorials(@RequestParam(required = false) String title) {
 		try {
@@ -51,7 +53,7 @@ public class TutorialController {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-
+    @Operation(summary = "取得", description = "IDに基づく対象のデータを取得します")
 	@GetMapping("/tutorials/{id}")
 	public ResponseEntity<Tutorial> getTutorialById(@PathVariable("id") long id) {
 		Optional<Tutorial> tutorialData = tutorialRepository.findById(id);
@@ -63,6 +65,7 @@ public class TutorialController {
 		}
 	}
 
+    @Operation(summary = "登録", description = "新規のデータを登録します")
 	@PostMapping("/tutorials")
 	public ResponseEntity<Tutorial> createTutorial(@RequestBody Tutorial tutorial) {
 		try {
@@ -73,7 +76,8 @@ public class TutorialController {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-
+    
+    @Operation(summary = "更新", description = "IDに基づく対象のデータを更新します")
 	@PutMapping("/tutorials/{id}")
 	public ResponseEntity<Tutorial> updateTutorial(@PathVariable("id") long id, @RequestBody Tutorial tutorial) {
 		Optional<Tutorial> tutorialData = tutorialRepository.findById(id);
@@ -89,6 +93,7 @@ public class TutorialController {
 		}
 	}
 
+    @Operation(summary = "削除", description = "IDに基づく対象のデータを削除します")
 	@DeleteMapping("/tutorials/{id}")
 	public ResponseEntity<HttpStatus> deleteTutorial(@PathVariable("id") long id) {
 		try {
@@ -99,6 +104,7 @@ public class TutorialController {
 		}
 	}
 
+    @Operation(summary = "全件削除", description = "すべてのデータを削除します")
 	@DeleteMapping("/tutorials")
 	public ResponseEntity<HttpStatus> deleteAllTutorials() {
 		try {
@@ -110,6 +116,7 @@ public class TutorialController {
 
 	}
 
+    @Operation(summary = "複数取得(論理削除排他)", description = "publishedがtrueの値のデータを取得します")
 	@GetMapping("/tutorials/published")
 	public ResponseEntity<List<Tutorial>> findByPublished() {
 		try {

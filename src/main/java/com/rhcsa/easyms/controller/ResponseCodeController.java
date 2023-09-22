@@ -20,17 +20,19 @@ import org.springframework.web.bind.annotation.RestController;
 import com.rhcsa.easyms.model.HtStatus;
 import com.rhcsa.easyms.repository.HtstatusRepository;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @CrossOrigin
 @RestController
 @RequestMapping("/api")
-@Tag(name = "HttpResponse State Machine", description = "Set Response Code. getRequest Response Saved Code. ")
+@Tag(name = "HttpResponse State Machine", description = "任意のHttpStatusCodeを設定後、GetApiを通して任意のステータスを返却します ")
 public class ResponseCodeController {
 
 	@Autowired
 	HtstatusRepository htstatusRepository;
 
+	@Operation(summary = "ステータスコード返却",description = "登録した最新のHttpStatusCodeを返却します")
 	@GetMapping("/code/status")
 	public ResponseEntity<String> getHtstatus() {
 		try {
@@ -50,6 +52,7 @@ public class ResponseCodeController {
 		}
 	}
 
+	@Operation(summary = "ステータスコード返却（ID指定)",description = "登録した特定のHttpStatusCodeをIDを指定して取得(過去の状態の取得)")
 	@GetMapping("/code/{id}")
 	public ResponseEntity<HtStatus> getHtStatus(@PathVariable("id") long id) {
 		Optional<HtStatus> htStatusData = htstatusRepository.findById(id);
@@ -61,6 +64,7 @@ public class ResponseCodeController {
 		}
 	}
 
+	@Operation(summary = "ステータスコード設定",description = "HttpStatusCodeを登録します")
 	@PostMapping("/code")
 	public ResponseEntity<HtStatus> createHtStatus(@RequestBody HtStatus htstatus) {
 		try {
@@ -72,6 +76,7 @@ public class ResponseCodeController {
 		}
 	}
 
+	@Operation(summary = "システムクリア",description = "登録したすべてのHttpStatusCodeをクリアします")
 	@DeleteMapping("/code")
 	public ResponseEntity<HttpStatus> deleteHtstatus() {
 		try {
