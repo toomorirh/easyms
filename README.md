@@ -68,8 +68,9 @@ APIの実態は/apiの配下に配置されています。各種仕様は上記W
 
 APIの簡単な説明
 
-* Tutorial: Restの基本的なCRUDAPI
-* Code: HttpStatusCodeのステートを設定し、擬似的な異常レスポンスを作れます
+* api/tutorials: Restの基本的なCRUDAPI
+* api/code: HttpStatusCodeのステートを設定し擬似的な異常レスポンスを作れます
+* api/client: WebClientを用いてバックエンドのAPIをコールします（デフォルトはlocalhost:8080)
 
 ### Database Manage
 H2DBの管理は以下のURLから実行できます(接続情報の設定はapplication.properties)
@@ -78,12 +79,18 @@ H2DBの管理は以下のURLから実行できます(接続情報の設定はapp
 
 ### Other Tips
 
-Dockerfileを使ってコンテナ実行する場合は以下のコマンドを参考にしてください。
+* Dockerfileを使ってコンテナ実行する場合は以下のコマンドを参考にしてください。<br>
 (要Podman。Dockerの場合dockerに置き換えてください)
+  ```
+  podman build -t sample . 
+  podman run -d --name sample -p 8080:8080 localhost/sample
+  ```
+  注意：コンテナで実行する場合、buildしたjarから動作させています <br>
+  注意：コンテナで実行する場合、`/h2-ui` を通したDB管理はできません。
 
-```
-podman build -t sample . 
-podman run -d --name sample -p 8080:8080 localhost/sample
-```
-注意：コンテナで実行する場合、buildしたjarから動作させています
-注意：コンテナで実行する場合、`/h2-ui` を通したDB管理はできません。
+* api/clientをカスタマイズして使う
+
+  * デフォルトではTutorialをコールする仕様になっているのでRequest/Responseのモデルを変更する
+  * 必要に応じてOmniClientControllerとOmniClientの実装を変更してください
+  * リクエスト先の設定はapplication.propertiesにバックエンドサーバドメインを変更します（ただし下記注意）
+  * k8sやOpenShift上ではDockerfile内のsedによるドメイン置き換えをつかって依存注入しています
