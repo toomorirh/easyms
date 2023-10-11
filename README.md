@@ -61,6 +61,8 @@ APIはOAS3フォーマットで定義されており、以下URLからWebベー�
 
 [http://localhost:8080/swagger-ui/index.html#/](http://localhost:8080/swagger-ui/index.html#/)
 
+![Sample Image](image.png)
+
 ### APIs
 APIの実態は/apiの配下に配置されています。各種仕様は上記Webから参照可能です
 
